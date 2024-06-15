@@ -18,12 +18,12 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item {{ setActivo('nosotros') }}">
-                <a class="nav-link" href="nosotros">Nosotros</a>
+                <a class="nav-link" href="/nosotros">Nosotros</a>
             </li>
             <li class="nav-item {{ setActivo('servicios') }}">
-                <a class="nav-link" href="servicios">Servicios</a>
+                <a class="nav-link" href="/servicios">Servicios</a>
             </li>
-            <li class="nav-item {{ setActivo('contacto') }}">
+            <li class="nav-item {{ setActivo('/contacto') }}">
                 <a class="nav-link" href="contacto">Contactos</a>
             </li>
         </ul>
