@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Crear Servicio')
+@section('title', 'Editar Servicio')
 
 @section('content')
 <div class="container mt-5">
@@ -8,13 +8,13 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Crear nuevo servicio</h3>
+                    <h3 class="card-title">Editar Servicios</h3>
                 </div>
                 <div class="card-body">
                     @include('partials.validation-errors')
-                    <form action="{{ route('servicios.store') }}" method="post">
-                        @csrf
-                        @include('partials.form', ['btnText' => 'Guardar'])
+                    <form action="{{ route('servicios.update', $servicio) }}" method="post">
+                        @csrf @method('PATCH')
+                        @include('partials.form', ['btnText' => 'Actualizar'])
                     </form>
                 </div>
             </div>
