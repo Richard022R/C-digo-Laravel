@@ -1,61 +1,56 @@
 @extends('layout')
 
-@section('title','Contacto')
+@section('title', 'Contacto')
 
 @section('content')
-    <tr>
-        <td colspan="4">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col" colspan="2">CONTACTO</th>
-                    </tr>
-                </thead>
-                @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}
-                    @endforeach
-                @endif
-                <form action="{{ route('contacto') }}" method="post">
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Contacto</h2>
+    
+    @if(session('estado'))
+        <div class="alert alert-success text-center" role="alert">
+            {{ session('estado') }}
+        </div>
+    @else
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form action="{{ route('contacto') }}" method="post" class="card p-4 shadow-sm">
                     @csrf {{-- Token para verificar que el formulario es seguro --}}
-                    <tbody>
-                        <tr>
-                            <td scope="row">Nombre:</td>
-                            <td>
-                                <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{ old('nombre') }}">
-                                {{ $errors->first('nombre') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Email:</td>
-                            <td>
-                                <input type="email" name="email" placeholder="Email" class="form-control" value="{{ old('email') }}">
-                                {{ $errors->first('email') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Asunto:</td>
-                            <td>
-                                <input type="text" name="asunto" placeholder="Asunto" class="form-control" value="{{ old('asunto') }}">
-                                {{ $errors->first('asunto') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Mensaje:</td>
-                            <td>
-                                <textarea name="mensaje" cols="15" rows="8" placeholder="Mensaje" class="form-control" value="{{ old('mensaje') }}"></textarea>
-                                {{ $errors->first('mensaje') }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row" colspan="2" align="center">
-                                <button type="reset" class="btn btn-primary">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Enviar</button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" value="{{ old('nombre') }}">
+                        @if ($errors->has('nombre'))
+                            <div class="text-danger">{{ $errors->first('nombre') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" placeholder="Email" class="form-control" value="{{ old('email') }}">
+                        @if ($errors->has('email'))
+                            <div class="text-danger">{{ $errors->first('email') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto">Asunto:</label>
+                        <input type="text" name="asunto" id="asunto" placeholder="Asunto" class="form-control" value="{{ old('asunto') }}">
+                        @if ($errors->has('asunto'))
+                            <div class="text-danger">{{ $errors->first('asunto') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea name="mensaje" id="mensaje" cols="15" rows="8" placeholder="Mensaje" class="form-control">{{ old('mensaje') }}</textarea>
+                        @if ($errors->has('mensaje'))
+                            <div class="text-danger">{{ $errors->first('mensaje') }}</div>
+                        @endif
+                    </div>
+                    <div class="text-center">
+                        <button type="reset" class="btn btn-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
                 </form>
-            </table>
-        </td>
-    </tr>
+            </div>
+        </div>
+    @endif
+</div>
 @endsection
+
