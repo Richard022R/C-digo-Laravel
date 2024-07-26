@@ -10,10 +10,11 @@
     </div>
 
     @if($servicios && $servicios->count() > 0)
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped mt-3 mx-auto">
+
+            <table class="table mt-3 mx-5">
                 <thead class="thead-light">
                     <tr>
+                        <th class="text-center">Imagen</th>
                         <th class="text-center">Título</th>
                         <th class="text-center">Descripción</th>
                         <th class="text-center">Acciones</th>
@@ -22,6 +23,11 @@
                 <tbody>
                     @foreach($servicios as $servicio)
                         <tr>
+                            <td class="text-center">
+                                @if($servicio->image)
+                                    <img src="/storage/{{ $servicio->image }}" alt="{{ $servicio->titulo }}" width="50" height="50">
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{ route('servicios.show', $servicio) }}" class="text-primary">{{ $servicio->titulo }}</a>
                             </td>
@@ -38,7 +44,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+
     @else
         <div class="alert alert-info mt-3" role="alert">
             No existe ningún servicio que mostrar.
